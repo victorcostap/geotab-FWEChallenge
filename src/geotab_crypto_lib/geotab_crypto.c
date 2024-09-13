@@ -18,7 +18,8 @@ int crypt_buffer(struct crypt_context* context, uint8_t* output,
 
   unsigned i = 0;
   for (unsigned elem = 0; elem < length; ++elem) {
-    k[i] = (k[i] + i) & 255;  // k[i] = (k[i] + i) mod 256
+    k[i] = (k[i] + i) & 255;  // k[i] = (k[i] + i) mod 256. The optimization is
+                              // possible because k is unsigned
     output[elem] = input[elem] ^ k[i];
     i = (i + 1) % context->lengthKey;
   }
