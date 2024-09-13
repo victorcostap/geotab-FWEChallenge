@@ -6,7 +6,7 @@
 
 int crypt_buffer(struct crypt_context* context, uint8_t* output,
                  const uint8_t* input, unsigned length) {
-  if (!context || !input || !output || length == 0 || context->lengthKey == 0) {
+  if (!context || !input || !output || context->lengthKey == 0) {
       return GEOTAB_CRYPTO_ERROR_INVALID_ARGS;
   }
   

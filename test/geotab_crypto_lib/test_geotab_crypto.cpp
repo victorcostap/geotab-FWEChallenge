@@ -308,20 +308,6 @@ TEST(GEOTAB_CRYPTO, test_buffer_null_output) {
       << "Expected error when output is null";
 }
 
-TEST(GEOTAB_CRYPTO, test_buffer_zero_length) {
-  struct crypt_context context;
-  uint8_t key[] = {0xc1, 0xab, 0xe5, 0xec, 0x1e, 0x7a};
-  context.key = key;
-  context.lengthKey = sizeof(key);
-
-  uint8_t input[] = {0x01, 0x02, 0x03};
-  uint8_t output[sizeof(input)];
-
-  auto ret = crypt_buffer(&context, output, input, 0);
-  ASSERT_EQ(ret, GEOTAB_CRYPTO_ERROR_INVALID_ARGS)
-      << "Expected error when length in crypt_buffer is zero";
-}
-
 TEST(GEOTAB_CRYPTO, test_buffer_invalid_key) {
   struct crypt_context context;
   uint8_t key[] = {};
