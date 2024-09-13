@@ -37,4 +37,4 @@ set_target_properties(test_geotab_crypto PROPERTIES
 
 enable_testing()
 
-add_test(LibTests test_geotab_crypto)
+add_test(NAME LibTests COMMAND test_geotab_crypto WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/test)
