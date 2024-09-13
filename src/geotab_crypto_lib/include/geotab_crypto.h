@@ -9,12 +9,13 @@ extern "C" {
 #define GEOTAB_CRYPTO_VERSION "v1.0.0"
 
 struct crypt_context {
-    
+    uint8_t* key;
+    unsigned lengthKey;
 };
 
 int crypt_buffer(struct crypt_context *context, uint8_t *output, const uint8_t *input, unsigned length);
 
-const char* crypto_get_library_version();
+const char* crypt_get_library_version();
 
 #ifdef __cplusplus
 }
