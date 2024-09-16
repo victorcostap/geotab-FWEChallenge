@@ -10,21 +10,15 @@ int crypt_buffer(struct crypt_context* context, uint8_t* output,
       return GEOTAB_CRYPTO_ERROR_INVALID_ARGS;
   }
   
-  uint8_t* k = (uint8_t*)malloc(context->lengthKey * sizeof(uint8_t));
-  if (!k) {
-    return GEOTAB_CRYPTO_ERROR_MEMORY_ALLOC;
-  }
-  memcpy(k, context->key, context->lengthKey);
-
-  unsigned i = 0;
+  uint8_t* k = context->key;
+  unsigned* i = &context->index;
   for (unsigned elem = 0; elem < length; ++elem) {
-    k[i] = (k[i] + i) & 255;  // k[i] = (k[i] + i) mod 256. The optimization is
+    k[*i] = (k[*i] + *i) & 255;  // k[i] = (k[i] + i) mod 256. The optimization is
                               // possible because k is unsigned
-    output[elem] = input[elem] ^ k[i];
-    i = (i + 1) % context->lengthKey;
+    output[elem] = input[elem] ^ k[*i];
+    *i = (*i + 1) % context->lengthKey;
   }
 
-  free(k);
   return GEOTAB_CRYPTO_SUCCESS;
 }
 
