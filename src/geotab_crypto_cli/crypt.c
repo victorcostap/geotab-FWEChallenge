@@ -1,11 +1,11 @@
+#include "crypt.h"
+
 #include <getopt.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
-#include <stdio.h>
 
-#include "crypt.h"
 #include "geotab_crypto.h"
 #include "geotab_crypto_errors.h"
 
@@ -112,14 +112,13 @@ void cleanUpResources(FILE *in, FILE *out, uint8_t *key) {
   if (key) free(key);
 }
 
-void getKeyLength(FILE *kf, struct crypt_context *context) {
+inline void getKeyLength(FILE *kf, struct crypt_context *context) {
   fseek(kf, 0, SEEK_END);
   context->lengthKey = ftell(kf);
   fseek(kf, 0, SEEK_SET);
 }
 
-void readKeyFromFile(const char *keyFile,
-                            struct crypt_context *context) {
+inline void readKeyFromFile(const char *keyFile, struct crypt_context *context) {
   FILE *kf = fopen(keyFile, "r");
   if (!kf) {
     fprintf(stderr, "Error opening key file\n");
@@ -142,16 +141,16 @@ void readKeyFromFile(const char *keyFile,
   }
 }
 
-void processInput(FILE *in, FILE *out, struct crypt_context *context,
+inline void processInput(FILE *in, FILE *out, struct crypt_context *context,
                   uint8_t *key) {
-  int inChar; // note: int, not char, required to handle EOF
+  int inChar;  // note: int, not char, required to handle EOF
   char outChar;
   int ret;
   context->index = 0;
 
   inChar = getc(in);
   while (inChar != EOF) {
-    ret = crypt_buffer(context, &outChar, (char*)&inChar, 1);
+    ret = crypt_buffer(context, &outChar, (char *)&inChar, 1);
     if (ret != GEOTAB_CRYPTO_SUCCESS) {
       fprintf(stderr, "Error while encrypting/decrypting data\n");
       cleanUpResources(in, out, key);

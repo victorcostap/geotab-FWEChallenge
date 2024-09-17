@@ -2,19 +2,21 @@
 
 BUILD_DIR:=build
 
-.PHONY: release debug clean
+.PHONY: release compile debug clean
 
 all: release
 
 create_build:
 	@mkdir -p $(BUILD_DIR)
 
+compile: release
+
 release: create_build
-	@cd $(BUILD_DIR); cmake ..;
+	@cd $(BUILD_DIR) && cmake ..
 	@$(MAKE) -C $(BUILD_DIR)
 
 debug: create_build
-	@cd $(BUILD_DIR); cmake -DCMAKE_BUILD_TYPE=Debug ..;
+	@cd $(BUILD_DIR) && cmake -DCMAKE_BUILD_TYPE=Debug ..
 	@$(MAKE) -C $(BUILD_DIR)
 
 clean:
