@@ -13,11 +13,11 @@ compile: release
 
 release: create_build
 	@cd $(BUILD_DIR) && cmake ..
-	@$(MAKE) -C $(BUILD_DIR)
+	@$(MAKE) -C $(BUILD_DIR) --no-print-directory
 
 debug: create_build
 	@cd $(BUILD_DIR) && cmake -DCMAKE_BUILD_TYPE=Debug ..
-	@$(MAKE) -C $(BUILD_DIR)
+	@$(MAKE) -C $(BUILD_DIR) --no-print-directory
 
 test: compile
 	@cd $(BUILD_DIR) && ctest -V
