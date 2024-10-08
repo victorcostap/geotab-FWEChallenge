@@ -73,6 +73,7 @@ int main(int argc, char *argv[]) {
   // Read key from file if -f option
   if (keyFile) {
     readKeyFromFile(keyFile, &context);
+    key = context.key;
   }
 
   if (inputFile) {
@@ -93,7 +94,7 @@ int main(int argc, char *argv[]) {
     }
   }
 
-  processInput(in, out, &context, key);
+  processInput(in, out, &context);
   cleanUpResources(in, out, key);
 
   return 0;
@@ -107,9 +108,18 @@ void printUsage(const char *progName) {
 }
 
 void cleanUpResources(FILE *in, FILE *out, uint8_t *key) {
-  if (in != stdin) fclose(in);
-  if (out != stdout) fclose(out);
-  if (key) free(key);
+  if (in && in != stdin) {
+    fclose(in);
+    in = NULL;
+  }
+  if (out && out != stdout) {
+    fclose(out);
+    out = NULL;
+  } 
+  if (key) {
+    free(key);
+    key = NULL;
+  }
 }
 
 inline void getKeyLength(FILE *kf, struct crypt_context *context) {
@@ -140,12 +150,12 @@ inline void readKeyFromFile(const char *keyFile, struct crypt_context *context) 
   }
 }
 
-inline void processInput(FILE *in, FILE *out, struct crypt_context *context,
-                  uint8_t *key) {
+inline void processInput(FILE *in, FILE *out, struct crypt_context *context) {
   int inChar;  // note: int, not char, required to handle EOF
   char outChar;
   int ret;
   context->index = 0;
+  uint8_t* key = context->key;
 
   inChar = getc(in);
   while (inChar != EOF) {

@@ -34,9 +34,10 @@ void getKeyLength(FILE *kf, struct crypt_context *context);
  * @brief Reads the cryptographic key from a specified file.
  *
  * @param keyFile String with the path of the file with the key
+ * @param context Cryptographic context where to store the key and its length
  */
 void readKeyFromFile(const char *keyFile,
-                            struct crypt_context *context);
+                    struct crypt_context *context);
 
 /**
  * @brief Processes the input from the input stream and writes the result to the given output stream.
@@ -47,7 +48,6 @@ void readKeyFromFile(const char *keyFile,
  * @param out Pointer to the output stream.
  * @param context Pointer to the cryptographic context with the key and other required information
  */
-void processInput(FILE *in, FILE *out, struct crypt_context *context,
-                  uint8_t *key);
+void processInput(FILE *in, FILE *out, struct crypt_context *context);
 
 #endif // CRYPT_H
