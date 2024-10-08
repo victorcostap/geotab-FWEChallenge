@@ -125,14 +125,13 @@ inline void readKeyFromFile(const char *keyFile, struct crypt_context *context) 
     exit(EXIT_FAILURE);
   }
   getKeyLength(kf, context);
-  context->key = (uint8_t *)malloc(context->lengthKey + 1);
+  context->key = (uint8_t *)malloc(context->lengthKey);
   if (!context->key) {
     fclose(kf);
     fprintf(stderr, "Error allocating memory for key\n");
     exit(EXIT_FAILURE);
   }
   fread(context->key, 1, context->lengthKey, kf);
-  context->key[context->lengthKey] = '\0';
   fclose(kf);
 
   if (context->lengthKey < 1 || context->lengthKey > 256) {
