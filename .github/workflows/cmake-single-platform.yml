@@ -22,6 +22,12 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
+  
+    - name: install-doxygen
+      uses: AdarshRawat1/Install-Doxygen@v1.0
+
+    - name: install-gtest
+      uses: Bacondish2023/setup-googletest@v1
 
     - name: Configure CMake
       # Configure CMake in a 'build' subdirectory. `CMAKE_BUILD_TYPE` is only required if you are using a single-configuration generator such as make.
