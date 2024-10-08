@@ -1,0 +1,18 @@
+PROJECT_NAME           = Crypt CLI
+OUTPUT_DIRECTORY       = "@CMAKE_CURRENT_BINARY_DIR@/doc_cli/"
+INPUT                  = "@CMAKE_CURRENT_SOURCE_DIR@/src/geotab_crypto_cli" "@CMAKE_CURRENT_SOURCE_DIR@/src/geotab_crypto_cli/docs/mainpage.dox"
+FILE_PATTERNS          = *.h \
+                         *.dxy
+
+OPTIMIZE_OUTPUT_FOR_C  = YES
+EXTRACT_ALL            = YES
+HIDE_UNDOC_MEMBERS     = NO
+
+WARN_IF_UNDOCUMENTED   = YES
+
+RECURSIVE              = YES
+GENERATE_LATEX         = NO
+GENERATE_HTML          = YES
+GENERATE_MAN           = NO
+GENERATE_XML           = NO
+QUIET                  = $(DOXYGEN_QUIET)

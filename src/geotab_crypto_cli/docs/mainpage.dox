@@ -1,0 +1,41 @@
+/**
+ * @mainpage Crypt CLI Program
+ *
+ * @section intro_sec Introduction
+ *
+ * This project provides a command-line tool for processing files using a symmetric cryptographic algorithm. 
+ * It supports reading cryptographic keys from a file or directly from the command line, and 
+ * processes input files character by character to allow reading continuos data from stdin.
+ *
+ * @section usage_sec Usage
+ *
+ * The program can be executed with the following command-line options:
+ *
+ * @code
+ * Usage: cryptographic_processor [-h] -k <key> | -f <key_file> [-o <output_file>] [<input_file>]
+ * @endcode
+ *
+ * - `-h`: Display usage information.
+ * - `-k <key>`: Specify the cryptographic key directly.
+ * - `-f <key_file>`: Specify the file containing the cryptographic key.
+ * - `-o <output_file>`: Specify the output file. If not provided, stdout is used.
+ * - `<input_file>`: Specify the input file. If not provided, stdin is used.
+ *
+ * @section example_sec Example
+ *
+ * Encrypt a file using a key from the command line:
+ * @code
+ * ./cryptographic_processor -k mysecretkey -o output.txt input.txt
+ * @endcode
+ *
+ * Encrypt a file using a key from a file:
+ * @code
+ * ./cryptographic_processor -f keyfile.txt -o output.txt input.txt
+ * @endcode
+ *
+ * @section files_sec Files
+ *
+ * - `crypt.h`: Header file containing function declarations and documentation.
+ * - `crypt.c`: Source file containing the implementation of the cryptographic file processor.
+ *
+ */

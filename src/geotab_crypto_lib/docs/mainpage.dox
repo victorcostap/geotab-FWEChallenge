@@ -1,0 +1,32 @@
+/**
+ * @mainpage Geotab Crypto Library
+ *
+ * @section intro_sec Introduction
+ *
+ * The Geotab Crypto Library provides cryptographic functions for encrypting and decrypting data using a symmetric algorithm.
+ *
+ * @section example Example Usage
+ * @code
+ * #include "geotab_crypto.h"
+ *
+ * struct crypt_context ctx;
+ * uint8_t key[] = { /* your key data */ };
+ * ctx.key = key;
+ * ctx.lengthKey = sizeof(key);
+ * ctx.index = 0;
+ *
+ * uint8_t input[] = { /* your input data */ };
+ * uint8_t output[sizeof(input)];
+ *
+ * int result = crypt_buffer(&ctx, output, input, sizeof(input));
+ * if (result == GEOTAB_CRYPTO_SUCCESS) {
+ *     // Process the output
+ * }
+ * @endcode
+ *
+ * @section files_sec Files
+ *
+ * - `geotab_crypto.h`: Header file containing function declarations and documentation.
+ * - `geotab_crypto.c`: Source file containing the implementation of the cryptographic functions.
+ *
+ */
