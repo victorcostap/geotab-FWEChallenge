@@ -12,12 +12,16 @@ extern "C" {
  * @struct crypt_context
  * @brief Holds required cryptographic information for decrypt/encrypt operations
  *
- * Holds the cryptographic key, its length, and the current index used for the
+ * Holds the cryptographic key, its length, 
+ * and the current index used for the
  * cryptographic operations
  */
 struct crypt_context {
+    /** @brief Key to be used to encrypt/decrypt the messages */
     uint8_t* key;
+    /** @brief Length of the key */
     unsigned lengthKey;
+    /** @brief Current index to be used in the cryptographic operations */
     unsigned index;
 };
 
